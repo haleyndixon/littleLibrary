@@ -3,10 +3,10 @@ package littleLibrary;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import javafx.scene.Node;
 
 import java.io.ByteArrayInputStream;
 import java.sql.Connection;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Slideshow {
+public class Slideshow{
         private List<Node> slides = new ArrayList<>();
         private int currentSlide = 0;
         private Timeline timeline;
@@ -84,7 +84,7 @@ public class Slideshow {
 
     }
 
-        private List<byte[]> getCovers() {
+    public List<byte[]> getCovers() {
         List<byte[]> covers = new ArrayList<>();
         try {
             Connection connection = DatabaseTings.getConnection();
@@ -100,5 +100,7 @@ public class Slideshow {
             throw new RuntimeException(e);
         } return covers;
     }
+
+
 }
 
