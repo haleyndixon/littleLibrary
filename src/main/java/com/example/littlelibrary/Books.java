@@ -1,74 +1,131 @@
-//package com.example.littlelibrary;
+package com.example.littlelibrary;
+
+public class Books {
+
+    public final String title;
+    public final String author;
+    public final String finish;
+    public final String pageCount;
+    public final String rating;
+
+    public Books(String title, String author, String finish, String pageCount, String rating) {
+        this.title = title;
+        this.author = author;
+        this.finish = finish;
+        this.pageCount = pageCount;
+        this.rating = rating;
+    }
+
+    @Override
+    public String toString() {
+        return "Books{" +
+                "Title='" + title + '\'' +
+                ", Author='" + author + '\'' +
+                ", Finish='" + finish + '\'' +
+                ", Pages='" + pageCount + '\'' +
+                ", Rating='" + rating + '\'' +
+                '}';
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getFinishDate() {
+        return finish;
+    }
+
+    public String getPageCount() {
+        return pageCount;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //
+//    @FXML public final TextField titleField;
+//    @FXML public final TextField authorField;
+//    @FXML public final TextField finishField;
+//    @FXML public final TextField countField;
+//    @FXML public final TextField ratingField;
+//    @FXML public final TextField idField;
 //
-//import javafx.beans.property.ReadOnlyIntegerProperty;
-//import javafx.beans.property.ReadOnlyStringProperty;
-//import javafx.beans.property.SimpleIntegerProperty;
-//import javafx.beans.property.SimpleStringProperty;
-//
-//public class Books {
-//        private final ReadOnlyStringProperty title;
-//        private final ReadOnlyStringProperty author;
-//        private final ReadOnlyStringProperty finishDate;
-//        private final ReadOnlyStringProperty pageCount;
-//        private final ReadOnlyStringProperty rating;
-//        private final int id;
-//
-//
-//
-//    public String getTitle() {
-//        return title.get();
+//    @Override
+//    public String toString() {
+//        return "Books{" +
+//                "titleField=" + titleField +
+//                ", authorField=" + authorField +
+//                ", finishField=" + finishField +
+//                ", countField=" + countField +
+//                ", ratingField=" + ratingField +
+//                ", idField=" + idField +
+//                '}';
 //    }
 //
-//    public ReadOnlyStringProperty titleProperty() {
-//        return title;
+//    public TextField getTitleField() {
+//        return titleField;
 //    }
 //
-//    public String getAuthor() {
-//        return author.get();
+//    public TextField getAuthorField() {
+//        return authorField;
 //    }
 //
-//    public ReadOnlyStringProperty authorProperty() {
-//        return author;
+//    public TextField getFinishField() {
+//        return finishField;
 //    }
 //
-//    public String getFinishDate() {
-//        return finishDate.get();
+//    public TextField getCountField() {
+//        return countField;
 //    }
 //
-//    public ReadOnlyStringProperty finishDateProperty() {
-//        return finishDate;
+//    public TextField getRatingField() {
+//        return ratingField;
 //    }
 //
-//    public String getPageCount() {
-//        return pageCount.get();
+//    public TextField getIdField() {
+//        return idField;
 //    }
 //
-//    public ReadOnlyStringProperty pageCountProperty() {
-//        return pageCount;
-//    }
+//    public Books(TextField titleField, TextField authorField, TextField finishField, TextField countField, TextField ratingField, TextField idField) {
+//        this.titleField = titleField;
+//        this.authorField = authorField;
+//        this.finishField = finishField;
+//        this.countField = countField;
+//        this.ratingField = ratingField;
+//        this.idField = idField;
 //
-//    public String getRating() {
-//        return rating.get();
-//    }
 //
-//    public ReadOnlyStringProperty ratingProperty() {
-//        return rating;
-//    }
 //
-//    public int getId() {
-//        return id;
 //    }
-//
-//    public Books(String title, String author, String finishDate, String pageCount, String rating, int id) {
-//        this.title = new SimpleStringProperty(title);
-//        this.author = new SimpleStringProperty(author);
-//        this.finishDate = new SimpleStringProperty(finishDate);
-//        this.pageCount = new SimpleStringProperty(pageCount);
-//        this.rating = new SimpleStringProperty(rating);
-//        this.id = id;
-//    }
-//
-//}
+}
+
+
+
+
+
+
+
 
 
 

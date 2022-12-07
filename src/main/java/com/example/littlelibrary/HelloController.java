@@ -1,96 +1,116 @@
 package com.example.littlelibrary;
 
-import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 
 import java.sql.*;
-import java.util.Optional;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
-public class HelloController extends  SqliteConnectionClass{
+public class HelloController {
+    
+    public void initialize() {
+        loadData();
+    }
 
-//    @FXML public TableView<Books> exampleTable;
-//    @FXML public TableColumn<Books, String> titleColumn;
-//    @FXML public TableColumn<Books, String> authorColumn;
-//    @FXML public TableColumn<Books, String> finishDateColumn;
-//    @FXML public TableColumn<Books, String> pageCountColumn;
-//    @FXML public TableColumn<Books, String> ratingColumn;
-//
-//    @FXML public TableColumn<Books, Integer> idColumn;
+    @FXML public TableView<Books> exampleTable;
+    @FXML public TableColumn<Books, String> titleColumn;
+    @FXML public TableColumn<Books, String> authorColumn;
+    @FXML public TableColumn<Books, String> finishDateColumn;
+    @FXML public TableColumn<Books, String> pageCountColumn;
+    @FXML public TableColumn<Books, String> ratingColumn;
+
+    String query = null;
+    Connection conn = null;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    Books book = null;
+    
+    ObservableList <Books> BookList = FXCollections.observableArrayList();
+
     @FXML Button saveBtn;
     @FXML TextField titleField;
     @FXML TextField authorField;
     @FXML TextField finishField;
     @FXML TextField countField;
     @FXML TextField ratingField;
+    
+    public void loadData() {
 
-    @FXML TextField idField;
+        conn = SqliteConnectionClass.getConnection();
 
+        refreshTable();
 
+        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
+        finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish"));
+        pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Pages"));
+        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
+
+    }
+    
+    public void refreshTable() {
+
+        try {
+            query = "select * from Entries;";
+            preparedStatement = conn.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                BookList.add(new Books(
+                        resultSet.getString("Title"),
+                        resultSet.getString("Author"),
+                        resultSet.getString("Finish"),
+                        resultSet.getString("Pages"),
+                        resultSet.getString("Rating")
+
+                ));
+                exampleTable.setItems(BookList);
+            }
+            preparedStatement.close();
+            resultSet.close();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
     public void addNewEntry(ActionEvent event) {
 
+        loadData();
+
         Connection conn;
         Statement stmt = null;
+        String title = titleField.getText();
+        String author = authorField.getText();
+        String finishDate = finishField.getText();
+        String pageCount = countField.getText();
+        String rating = ratingField.getText();
 
-        try {
-            conn = SqliteConnectionClass.getConnection();
-            stmt = conn.createStatement();
-            stmt.execute("INSERT INTO Entries ('Title', 'Author', 'Finish Date', 'Page Count', 'Rating', 'ID') VALUES ('"+titleField.getText()+"', '"+authorField.getText()+"', '"+finishField.getText()+"', '"+countField.getText()+"', '"+ratingField.getText()+"', '"+idField.getText()+"')");
-            System.out.println(" SUCCESS!\n");
-
-        
-      
-        } catch (SQLException e) {
-            Logger.getLogger(SqliteConnectionClass.class.getName()).log(Level.SEVERE, null, e);
+        if (title.isEmpty()||author.isEmpty()||finishDate.isEmpty()||pageCount.isEmpty()||rating.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill in data");
+            alert.showAndWait();
+        } else {
+            getQuery();
+            insert();
         }
 
 
+    }
+
+    private void insert() {
+    }
+
+    private void getQuery() {
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//        finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish Date"));
-//        pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Page Count"));
-//        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
-//        idColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
-//
-//        exampleTable.setItems();
-//
-
-
-//    public void initialize(){
-//        exampleTable.setItems(BookEntryDAO.getBooks());
-//
-//        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
-//        authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
-//        finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish Date"));
-//        pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Page Count"));
-//        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
-//        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-//    }
 //
 //    private Dialog<Books> createBookDialog (Books books) {
 //        Dialog<Books> dialog = new Dialog<>();
@@ -157,8 +177,63 @@ public class HelloController extends  SqliteConnectionClass{
 //   }
 
 
+//
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//        try {
+////            conn = SqliteConnectionClass.getConnection();
+//            stmt = conn.createStatement();
+//            System.out.println("SUCCESSFUL CONNECTION!\n");
+//            stmt.executeUpdate("INSERT INTO Entries ('Title', 'Author', 'Finish', 'Pages', 'Rating') VALUES ('"+titleField.getText()+"', '"+authorField.getText()+"', '"+finishField.toString()+"','"+countField.getText()+"','"+ratingField.toString()+"'");
+//
+//
+//
+//
+//        } catch (SQLException e) {
+//            Logger.getLogger(SqliteConnectionClass.class.getName()).log(Level.SEVERE, null, e);
+//        }
+
+//        stmt.execute("INSERT INTO Entries ('Title', 'Author', 'Finish Date', 'Page Count', 'Rating') VALUES ("+new Books(titleField.getText(),
+//                authorField.getText(),
+//                finishField.getText(),
+//                countField.getText(),
+////                ratingField.getText())+")");
+
+//
+//        finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish Date"));
+//        pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Page Count"));
+//        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
+//        idColumn.setCellValueFactory(new PropertyValueFactory<>("ID"));
+//
+//        exampleTable.setItems();
+//
+
+
+//    public void initialize(){
+//        exampleTable.setItems(BookEntryDAO.getBooks());
+//
+//        titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
+//        authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
+//        finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish Date"));
+//        pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Page Count"));
+//        ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
+//        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+
+
     }
-    }
+
 
 
 //        SqliteConnectionClass connection = new SqliteConnectionClass();
