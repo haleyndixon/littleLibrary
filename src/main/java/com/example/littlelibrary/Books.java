@@ -2,18 +2,20 @@ package com.example.littlelibrary;
 
 public class Books {
 
-    public final String title;
-    public final String author;
-    public final String finish;
-    public final String pageCount;
-    public final String rating;
+    private final String title;
+    private final String author;
+    private final String finish;
+    private final String pageCount;
+    private final String rating;
+    private final int id;
 
-    public Books(String title, String author, String finish, String pageCount, String rating) {
+    public Books(String title, String author, String finish, String pageCount, String rating, int id) {
         this.title = title;
         this.author = author;
         this.finish = finish;
         this.pageCount = pageCount;
         this.rating = rating;
+        this.id = id;
     }
 
     @Override
