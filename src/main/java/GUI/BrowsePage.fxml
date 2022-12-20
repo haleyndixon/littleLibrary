@@ -7,11 +7,11 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.littlelibrary.BrowseController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="littleLibrary.BrowseController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../resources/BrowsePage.png" />
+            <Image url="@../../resources/BrowsePage.png" />
          </image>
       </ImageView>
       <TableView fx:id="exampleTable" layoutX="51.0" layoutY="138.0" opacity="0.72" prefHeight="188.0" prefWidth="500.0">

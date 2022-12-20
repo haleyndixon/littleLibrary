@@ -1,4 +1,4 @@
-package com.example.littlelibrary;
+package littleLibrary;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,7 +54,7 @@ public class AddBookController {
     }
 
     private void getQuery() {
-        if (update == false) {
+        if (!update) {
             query = "insert into Entries (Title, Author, Finish, Pages, Rating)\n" +
                     "values (?, ?, ?, ?, ?);";
         } else

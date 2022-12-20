@@ -1,5 +1,5 @@
 
-package com.example.littlelibrary;
+package littleLibrary;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,39 +7,27 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 
 
-public class mainLibraryPage  extends Application{
+public class mainLibraryPage  extends Application {
+
     public static void main(String[] args) {
-        CheckConnection();
         launch(args);
     }
 
-    public static void CheckConnection() {
-        Connection conn = SqliteConnectionClass.getConnection();
-        if (conn == null){
-            System.out.println("connection is not successful");
-            System.exit(1);
-        } else {
-            System.out.println("connection successful");
-        }
-    }
-
-
-
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
+
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\com\\example\\littlelibrary\\Main Page.fxml"));
-        AnchorPane mainPane = loader.<AnchorPane>load();
+        loader.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\Main Page.fxml"));
+        AnchorPane mainPane = loader.load();
 
         Scene mainScene = new Scene(mainPane);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Little Library");
         primaryStage.show();
-
     }
 
 

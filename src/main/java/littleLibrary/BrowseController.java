@@ -1,10 +1,9 @@
-package com.example.littlelibrary;
+package littleLibrary;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,20 +17,26 @@ public class BrowseController {
     }
 
 
-    @FXML public TableView<Books> exampleTable;
-    @FXML public TableColumn<Books, String> titleColumn;
-    @FXML public TableColumn<Books, String> authorColumn;
-    @FXML public TableColumn<Books, String> finishDateColumn;
-    @FXML public TableColumn<Books, String> pageCountColumn;
-    @FXML public TableColumn<Books, String> ratingColumn;
-    @FXML public TableColumn<Books, Integer> idColumn;
+    @FXML
+    public TableView<Books> exampleTable;
+    @FXML
+    public TableColumn<Books, String> titleColumn;
+    @FXML
+    public TableColumn<Books, String> authorColumn;
+    @FXML
+    public TableColumn<Books, String> finishDateColumn;
+    @FXML
+    public TableColumn<Books, String> pageCountColumn;
+    @FXML
+    public TableColumn<Books, String> ratingColumn;
+    @FXML
+    public TableColumn<Books, Integer> idColumn;
 
 
-    String query = null;
-    Connection conn = null;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet = null;
-    Books book = null;
+    String query;
+    Connection conn;
+    PreparedStatement preparedStatement;
+    ResultSet resultSet;
 
     ObservableList<Books> BookList = FXCollections.observableArrayList();
 
@@ -51,7 +56,7 @@ public class BrowseController {
     }
 
     @FXML public void deleteEntry(ActionEvent actionEvent) throws SQLException {
-        Button delete;
+
         //get the selected items from table and delete
         ObservableList<Books> selectedItems = exampleTable.getSelectionModel().getSelectedItems();
         exampleTable.getItems().removeAll(selectedItems);
@@ -60,7 +65,8 @@ public class BrowseController {
         conn = SqliteConnectionClass.getConnection();
         Statement statement = conn.createStatement();
         for (Books item : selectedItems) {
-            statement.executeUpdate("DELETE FROM Entries WHERE id = " + item.getTitle());
+            statement.executeUpdate("DELETE FROM Entries WHERE id = " + item.getId());
+        statement.close();
         }
 
 

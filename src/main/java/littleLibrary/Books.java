@@ -1,19 +1,20 @@
-package com.example.littlelibrary;
+package littleLibrary;
 
 public class Books {
 
     private final String title;
     private final String author;
     private final String finish;
-    private final String pageCount;
+    private final String pages;
     private final String rating;
-    private final int id;
+    private final Integer id;
 
-    public Books(String title, String author, String finish, String pageCount, String rating, int id) {
+
+    public Books(String title, String author, String finish, String pages, String rating, Integer id) {
         this.title = title;
         this.author = author;
         this.finish = finish;
-        this.pageCount = pageCount;
+        this.pages = pages;
         this.rating = rating;
         this.id = id;
     }
@@ -24,31 +25,35 @@ public class Books {
                 "Title='" + title + '\'' +
                 ", Author='" + author + '\'' +
                 ", Finish='" + finish + '\'' +
-                ", Pages='" + pageCount + '\'' +
+                ", Pages='" + pages + '\'' +
                 ", Rating='" + rating + '\'' +
+                ", id='" + id + '\'' +
                 '}';
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
-    public String getFinishDate() {
-        return finish;
+    public String getFinish() {
+        return this.finish;
     }
 
-    public String getPageCount() {
-        return pageCount;
+    public String getPages() {
+        return this.pages;
     }
 
     public String getRating() {
-        return rating;
+        return this.rating;
     }
 
+    public Integer getId() {
+        return id;
+    }
 }
 
 
