@@ -2,15 +2,7 @@ package littleLibrary;
 
 public class Books {
 
-    private final String title;
-    private final String author;
-    private final String finish;
-    private final String pages;
-    private final String rating;
-    private final Integer id;
-
-
-    public Books(String title, String author, String finish, String pages, String rating, Integer id) {
+    public Books(String title, String author, String finish, String pages, String rating, int id) {
         this.title = title;
         this.author = author;
         this.finish = finish;
@@ -18,6 +10,14 @@ public class Books {
         this.rating = rating;
         this.id = id;
     }
+
+    public final String title;
+    public final String author;
+    public final String finish;
+    public final String pages;
+    public final String rating;
+    public final int id;
+
 
     @Override
     public String toString() {
@@ -31,28 +31,28 @@ public class Books {
                 '}';
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public String getAuthor() {
-        return this.author;
+        return author;
     }
 
     public String getFinish() {
-        return this.finish;
+        return finish;
     }
 
     public String getPages() {
-        return this.pages;
+        return pages;
     }
 
     public String getRating() {
-        return this.rating;
-    }
-
-    public Integer getId() {
-        return id;
+        return rating;
     }
 }
 

@@ -33,9 +33,9 @@ public class BrowseController {
     public TableColumn<Books, Integer> idColumn;
 
 
-    String query;
+    String query = null;
     Connection conn;
-    PreparedStatement preparedStatement;
+    PreparedStatement preparedStatement = null;
     ResultSet resultSet;
 
     ObservableList<Books> BookList = FXCollections.observableArrayList();
@@ -64,9 +64,8 @@ public class BrowseController {
         //create an object to execute queries
         conn = SqliteConnectionClass.getConnection();
         Statement statement = conn.createStatement();
-        for (Books item : selectedItems) {
-            statement.executeUpdate("DELETE FROM Entries WHERE id = " + item.getId());
-        statement.close();
+        for (Books id : selectedItems) {
+            statement.executeUpdate("DELETE FROM Entries WHERE id = " + id.getId());
         }
 
 
@@ -94,7 +93,7 @@ public class BrowseController {
             resultSet.close();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException();
         }
     }
 

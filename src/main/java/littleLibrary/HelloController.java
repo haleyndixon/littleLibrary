@@ -7,18 +7,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 
 
-public class HelloController {
+public class HelloController extends mainLibraryPage{
             
     @FXML Button addBtn;
-
     @FXML Button trackBtn;
     @FXML Button summaryBtn;
     @FXML Button browseBtn;
-
 
     @FXML public void addBtn (ActionEvent event) throws Exception {
 
@@ -46,12 +45,10 @@ public class HelloController {
     }
 
     @FXML public void browseBtn (ActionEvent event) {
-
-        Stage stage = (Stage) addBtn.getScene().getWindow();
-        stage.close();
+        System.out.println("Works");
 
         try {
-            
+
             FXMLLoader loader1 = new FXMLLoader();
             loader1.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\BrowsePage.fxml"));
             Parent root1 = loader1.load();
@@ -61,6 +58,22 @@ public class HelloController {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    @FXML public void backBtn (ActionEvent event) {
+//        Button backButton = new Button("Back");
+//        backButton.setOnAction(new EventHandler<ActionEvent>() {
+//            @Override
+//            public void handle(ActionEvent event) {
+//                //hide current window
+//                backButton.getScene().getWindow().hide();
+//
+//                //create new window
+//                Stage stage = new Stage();
+//                stage.setScene();
+//                stage.show();
+//            }
+//        });
     }
 
 
