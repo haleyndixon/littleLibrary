@@ -12,94 +12,82 @@ import java.sql.*;
 
 public class BrowseController {
 
-    public void initialize() {
+    ObservableList<Book> BookList = FXCollections.observableArrayList();
+
+    public void initialize() throws SQLException {
         loadData();
     }
 
+    @FXML
+    public TableView<Book> exampleTable;
+    @FXML
+    public TableColumn<Book, Integer> idColumn;
+    @FXML
+    public TableColumn<Book, String> titleColumn;
+    @FXML
+    public TableColumn<Book, String> authorColumn;
+    @FXML
+    public TableColumn<Book, String> finishDateColumn;
+    @FXML
+    public TableColumn<Book, String> pageCountColumn;
+    @FXML
+    public TableColumn<Book, String> ratingColumn;
 
-    @FXML
-    public TableView<Books> exampleTable;
-    @FXML
-    public TableColumn<Books, String> titleColumn;
-    @FXML
-    public TableColumn<Books, String> authorColumn;
-    @FXML
-    public TableColumn<Books, String> finishDateColumn;
-    @FXML
-    public TableColumn<Books, String> pageCountColumn;
-    @FXML
-    public TableColumn<Books, String> ratingColumn;
-    @FXML
-    public TableColumn<Books, Integer> idColumn;
 
 
-    String query = null;
-    Connection conn;
-    PreparedStatement preparedStatement = null;
-    ResultSet resultSet;
-
-    ObservableList<Books> BookList = FXCollections.observableArrayList();
-
-    public void loadData() {
-
-        conn = SqliteConnectionClass.getConnection();
+    public void loadData() throws SQLException {
 
         refreshTable();
-        
+
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("Title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("Author"));
         finishDateColumn.setCellValueFactory(new PropertyValueFactory<>("Finish"));
         pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Pages"));
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-
     }
 
     @FXML public void deleteEntry(ActionEvent actionEvent) throws SQLException {
 
+        Connection connection;
+
         //get the selected items from table and delete
-        ObservableList<Books> selectedItems = exampleTable.getSelectionModel().getSelectedItems();
+        ObservableList<Book> selectedItems = exampleTable.getSelectionModel().getSelectedItems();
         exampleTable.getItems().removeAll(selectedItems);
 
         //create an object to execute queries
-        conn = SqliteConnectionClass.getConnection();
-        Statement statement = conn.createStatement();
-        for (Books id : selectedItems) {
+        connection = DatabaseTings.getConnection();
+        Statement statement = connection.createStatement();
+        for (Book id : selectedItems) {
             statement.executeUpdate("DELETE FROM Entries WHERE id = " + id.getId());
         }
 
 
     }
+    public void refreshTable() throws SQLException {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        Connection conn = DatabaseTings.getConnection();
 
-    public void refreshTable() {
 
-        try {
-            query = "select * from Entries;";
-            preparedStatement = conn.prepareStatement(query);
-            resultSet = preparedStatement.executeQuery();
+        preparedStatement = conn.prepareStatement("select * from Entries");
+        resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                BookList.add(new Books(
-                        resultSet.getString("Title"),
-                        resultSet.getString("Author"),
-                        resultSet.getString("Finish"),
-                        resultSet.getString("Pages"),
-                        resultSet.getString("Rating"),
-                        resultSet.getInt("id")
-                        ));
-                exampleTable.setItems(BookList);
-            }
-            preparedStatement.close();
-            resultSet.close();
+        while (resultSet.next()) {
 
-        } catch (SQLException e) {
-            throw new RuntimeException();
+            BookList.add(new Book(
+
+                    resultSet.getInt("id"),
+                    resultSet.getString("Title"),
+                    resultSet.getString("Author"),
+                    resultSet.getString("Finish"),
+                    resultSet.getInt("Pages"),
+                    resultSet.getInt("Rating")
+                    ));
+            exampleTable.setItems(BookList);
         }
-    }
+        preparedStatement.close();
+        resultSet.close();
 
-    private void delete() {
-    }
-
-    private void getQuery() {
     }
 }

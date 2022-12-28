@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 
 
-public class HelloController extends mainLibraryPage{
+ public class HelloController {
             
     @FXML Button addBtn;
     @FXML Button trackBtn;
@@ -20,13 +20,12 @@ public class HelloController extends mainLibraryPage{
     @FXML Button browseBtn;
 
     @FXML public void addBtn (ActionEvent event) throws Exception {
-
-        Stage stage = (Stage) addBtn.getScene().getWindow();
-        stage.close();
+        System.out.println("Working here");
 
         try {
             FXMLLoader loader2 = new FXMLLoader();
-            loader2.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\AddBookPage.fxml"));
+            loader2.setLocation(new URL("File:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\AddBookPage.fxml"));
+
             Parent root2 = loader2.load();
             Stage stage2 = new Stage();
             stage2.setScene(new Scene(root2));
@@ -61,19 +60,7 @@ public class HelloController extends mainLibraryPage{
     }
 
     @FXML public void backBtn (ActionEvent event) {
-//        Button backButton = new Button("Back");
-//        backButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent event) {
-//                //hide current window
-//                backButton.getScene().getWindow().hide();
-//
-//                //create new window
-//                Stage stage = new Stage();
-//                stage.setScene();
-//                stage.show();
-//            }
-//        });
+
     }
 
 

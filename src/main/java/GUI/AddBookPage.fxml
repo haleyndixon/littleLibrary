@@ -49,13 +49,13 @@
                </font>
             </Label>
             <TextField fx:id="titleField" layoutX="160.0" layoutY="13.0" prefHeight="25.0" prefWidth="199.0" />
-            <TextField fx:id="countField" layoutX="159.0" layoutY="116.0" prefHeight="25.0" prefWidth="199.0" />
+            <TextField fx:id="pagesField" layoutX="159.0" layoutY="116.0" prefHeight="25.0" prefWidth="199.0" />
             <TextField fx:id="authorField" layoutX="160.0" layoutY="47.0" prefHeight="25.0" prefWidth="199.0" />
             <TextField fx:id="ratingField" layoutX="159.0" layoutY="150.0" prefHeight="20.0" prefWidth="199.0" />
             <DatePicker fx:id="finishField" layoutX="159.0" layoutY="82.0" prefHeight="25.0" prefWidth="199.0" />
          </children>
       </Pane>
-      <Button fx:id="saveBtn" layoutX="347.0" layoutY="354.0" mnemonicParsing="false" onMouseClicked="#addNewEntry" prefHeight="25.0" prefWidth="70.0" text="Save" />
-      <Button layoutX="427.0" layoutY="354.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Exit" />
+      <Button fx:id="saveBtn" layoutX="347.0" layoutY="354.0" mnemonicParsing="false" onAction="#addNewEntry" prefHeight="25.0" prefWidth="70.0" text="Save" />
+      <Button layoutX="427.0" layoutY="354.0" mnemonicParsing="false" onAction="#backBtn" prefHeight="25.0" prefWidth="70.0" text="Back" />
    </children>
 </AnchorPane>

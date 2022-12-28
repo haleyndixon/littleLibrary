@@ -3,7 +3,7 @@ package littleLibrary;
 import java.sql.*;
 
 
-public class SqliteConnectionClass {
+public class DatabaseTings {
     public static Connection getConnection() {
         Connection connection = null;
 
@@ -18,15 +18,17 @@ public class SqliteConnectionClass {
     }
 
     public static void CheckConnection() {
-        Connection conn = SqliteConnectionClass.getConnection();
+        Connection conn = DatabaseTings.getConnection();
         if (conn == null) {
             System.out.println("connection is not successful");
             System.exit(1);
         } else {
             System.out.println("connection successful");
         }
-
     }
 }
+
+
+
 
 
