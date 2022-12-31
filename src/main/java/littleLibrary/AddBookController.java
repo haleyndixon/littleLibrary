@@ -4,23 +4,32 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 
 public class AddBookController {
 
-    @FXML TextField titleField = new TextField();
-    @FXML TextField authorField = new TextField();
-    @FXML DatePicker finishField = new DatePicker();
-    @FXML TextField pagesField = new TextField();
-    @FXML TextField ratingField = new TextField();
+    @FXML
+    TextField titleField = new TextField();
+    @FXML
+    TextField authorField = new TextField();
+    @FXML
+    DatePicker finishField = new DatePicker();
+    @FXML
+    TextField pagesField = new TextField();
+    @FXML
+    TextField ratingField = new TextField();
+    @FXML
+    FileChooser coverField = new FileChooser();
 
-    NavigationManager manager = new NavigationManager();
 
-    @FXML public void backBtn(ActionEvent event) {
-        manager.switchScene("File:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\AddBookPage.fxml");
-        manager.backButton("File:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\Main Page.fxml");
-    }
 
-    @FXML public void addNewEntry(ActionEvent event) {
+    @FXML public void addNewEntry(ActionEvent actionEvent) throws IOException, InterruptedException {
         Integer id = null;
         String title = titleField.getText();
         String author = authorField.getText();
@@ -28,83 +37,71 @@ public class AddBookController {
         Integer pages = Integer.valueOf(pagesField.getText());
         Integer rating = Integer.valueOf(ratingField.getText());
 
+        byte[] cover = chooseCoverPhoto();
+
         //create new book object and set parameters using the constructor
         Book book = new Book(null, title, author, finish, pages, rating);
 
-        book.insertBook();
+        book.insertBook(cover);
+
+        titleField.setText("");
+        authorField.setText("");
+        finishField.setValue(null);
+        pagesField.setText("");
+        ratingField.setText("");
 
     }
 
+    public byte[] chooseCoverPhoto() throws IOException {
+        try {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select Cover Photo");
+            File selectedFile = fileChooser.showOpenDialog(null);
 
+            // Check that a file was selected
+            if (selectedFile == null) {
+                return null;
+            }
 
+            // Check that the file is a valid image
+            BufferedImage image = ImageIO.read(selectedFile);
+            if (image == null) {
+                System.out.println("Invalid image file");
+                return null;
+            }
 
+            // Convert the image to a byte array
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(image, "jpg", baos);
+            baos.flush();
+            byte[] photoBytes = baos.toByteArray();
+            baos.close();
 
-
-
-
-
-//    public void setBook(Book book, ActionEvent actionEvent) {
-//        this.book = book;
-//
-//        //bind textfield data to book object
-//        titleField.textProperty().bindBidirectional(book.titleProperty());
-//        authorField.textProperty().bindBidirectional(book.authorProperty());
-//        finishField.valueProperty().bindBidirectional(book.finishProperty());
-//        countField.textProperty().bindBidirectional(book.pagesProperty(), new StringConverter<Number>() {
-//            //convert textfield string objects to an integer within the book object
-//            @Override
-//            public String toString(Number number) {
-//                return number.toString();
-//            }
-//
-//            @Override
-//            public Number fromString(String string) {
-//                return Integer.parseInt(string);
-//            }
-//        });
-//        ratingField.textProperty().bindBidirectional(book.ratingProperty(), new StringConverter<Number>() {
-//            //convert textfield string objects to an integer within the book object
-//            @Override
-//            public String toString(Number number) {
-//                return number.toString();
-//            }
-//            @Override
-//            public Number fromString(String string) {
-//                return Integer.parseInt(string);
-//            }
-//        });
+            return photoBytes;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Select Cover Photo");
+//        File selectedFile = fileChooser.showOpenDialog(null);
+//        Image image = new Image(selectedFile.getPath());
+//        System.out.println(image);
+//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(writableImage, null);
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        ImageIO.write(bufferedImage, "jpg", baos);
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        baos.flush();
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        byte[] photoBytes = baos.toByteArray();
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        baos.close();
+//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
+//        return photoBytes;
 //    }
-
-//
-//   public void insertData() throws SQLException{
-//
-//
-//        }
-//    }
-
 }
-
-
-
-
-//        finishField.setValue(LocalDate.now());
-//                LocalDate date = finishField.getValue();
-//
-//                if (titleField.getText().isEmpty() || authorField.getText().isEmpty() || finishField.getValue() == null || countField.getText().isEmpty() || ratingField.getText().isEmpty()) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setHeaderText(null);
-//                alert.setContentText("Please fill in data");
-//                alert.showAndWait();
-//                } else {
-//                insert();
-//                }
-
-//
-//    private void insert() throws SQLException {
-//        conn = DatabaseTings.getConnection();
-//        statement = conn.createStatement();
-//        statement.executeUpdate("insert into Entries (Title, Author, Finish, Pages, Rating)\n" +
-//                "values ('"+titleField.getText()+"', '"+authorField.getText()+"', '"+finishField.getValue()+"', '"+countField.getText()+"', '"+ratingField.getText()+"');");
-//        System.out.println("working so far");
-//
-//    }

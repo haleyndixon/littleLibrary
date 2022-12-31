@@ -5,10 +5,31 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class NavigationManager {
+public class SceneManager {
     private Scene previousScene;
     private Scene currentScene;
+
+    //map for storing scenes by name
+    private Map<String, Scene> scenes;
+
+    //Stage to display the scenes
+    private Stage stage;
+    public SceneManager(Stage stage) {
+        this.stage = stage;
+        this.scenes = new HashMap<>();
+    }
+
+    public void addScene(String name, Scene scene) {
+        scenes.put(name, scene);
+    }
+
+    //change to particular scene
+    public void  goToScene(String name) {
+        stage.setScene(scenes.get(name));
+    }
 
     public void switchScene (String fxmlFile) {
         // Update the value of the previousScene variable
@@ -27,18 +48,9 @@ public class NavigationManager {
         stage.setScene(currentScene);
     }
 
-    public void backButton(String fxmlFile) {
-        // Load the FXML file and create the previous scene
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlFile));
-        try {
-            previousScene = new Scene(fxmlLoader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void backButton() {
+        stage.setScene(currentScene);
 
-        // Update the stage to show the previous scene
-        Stage stage = (Stage) currentScene.getWindow();
-        stage.setScene(previousScene);
     }
 }
 

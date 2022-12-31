@@ -5,6 +5,7 @@ module littleLibrary {
     requires javafx.base;
     requires  javafx.graphics;
     requires org.xerial.sqlitejdbc;
+    requires java.desktop;
 
 
     opens littleLibrary to javafx.fxml, javafx.base;

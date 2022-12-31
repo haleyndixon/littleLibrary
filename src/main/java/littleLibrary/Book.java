@@ -23,7 +23,10 @@ public class Book {
         this.finish = finish;
         this.pages = pages;
         this.rating = rating;
+
     }
+
+
 
     public Integer getId() {
         return id;
@@ -49,8 +52,11 @@ public class Book {
         return rating;
     }
 
+
+
+
     //methods used by books
-    public void insertBook() {
+    public void insertBook(byte[] cover) {
 
         //connect to the database using the connection class
         Connection connection = null;
@@ -62,7 +68,7 @@ public class Book {
             connection = DatabaseTings.getConnection();
 
             //create sql insert statement
-            String sql = "INSERT INTO Entries (Title, Author, Finish, Pages, Rating) values (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Entries (Title, Author, Finish, Pages, Rating, Cover) values (?, ?, ?, ?, ?, ?)";
 
             //create prepared statement
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -73,6 +79,7 @@ public class Book {
                 preparedStatement.setObject(3, this.getFinish());
                 preparedStatement.setInt(4, this.getPages());
                 preparedStatement.setInt(5, this.getRating());
+                preparedStatement.setBytes(6, cover);
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
             }
@@ -83,16 +90,3 @@ public class Book {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

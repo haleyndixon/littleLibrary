@@ -30,34 +30,3 @@ public class mainLibraryPage  extends Application {
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
