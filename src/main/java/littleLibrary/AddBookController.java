@@ -83,25 +83,5 @@ public class AddBookController {
             return null;
         }
     }
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Select Cover Photo");
-//        File selectedFile = fileChooser.showOpenDialog(null);
-//        Image image = new Image(selectedFile.getPath());
-//        System.out.println(image);
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        WritableImage writableImage = new WritableImage((int) image.getWidth(), (int) image.getHeight());
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(writableImage, null);
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        ImageIO.write(bufferedImage, "jpg", baos);
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        baos.flush();
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        byte[] photoBytes = baos.toByteArray();
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        baos.close();
-//        System.out.println(Arrays.toString(new ByteArrayOutputStream[]{baos}));
-//        return photoBytes;
-//    }
+
 }
