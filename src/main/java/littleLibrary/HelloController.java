@@ -39,8 +39,17 @@ import java.net.URL;
 
     }
 
-    @FXML public void summary (ActionEvent event) {
-
+    @FXML public void summaryBtn (ActionEvent event) throws Exception {
+        try {
+            FXMLLoader loader2 = new FXMLLoader();
+            loader2.setLocation(new URL("File:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\SummaryPage.fxml"));
+            Parent root2 = loader2.load();
+            Stage stage2 = new Stage();
+            stage2.setScene(new Scene(root2));
+            stage2.show();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
     }
 
     @FXML public void browseBtn (ActionEvent event) {
