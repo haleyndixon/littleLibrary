@@ -1,4 +1,4 @@
-package littleLibrary;
+package PageControllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

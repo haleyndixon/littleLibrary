@@ -10,4 +10,6 @@ module littleLibrary {
 
     opens littleLibrary to javafx.fxml, javafx.base;
     exports littleLibrary;
+    exports PageControllers;
+    opens PageControllers to javafx.base, javafx.fxml;
 }

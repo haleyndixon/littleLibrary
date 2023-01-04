@@ -1,8 +1,10 @@
-package littleLibrary;
+package PageControllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import littleLibrary.DatabaseTings;
+import littleLibrary.Slideshow;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
