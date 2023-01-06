@@ -14,10 +14,9 @@ public class mainLibraryPage  extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
-    public void start(Stage primaryStage) throws IOException {
-
+    public void start(Stage primaryStage) throws IOException
+    {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\Main Page.fxml"));
         AnchorPane mainPane = loader.load();
@@ -27,6 +26,4 @@ public class mainLibraryPage  extends Application {
         primaryStage.setTitle("Little Library");
         primaryStage.show();
     }
-
-
 }

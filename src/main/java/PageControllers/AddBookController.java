@@ -14,7 +14,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class AddBookController {
-
     @FXML
     TextField titleField = new TextField();
     @FXML
@@ -27,10 +26,7 @@ public class AddBookController {
     TextField ratingField = new TextField();
     @FXML
     FileChooser coverField = new FileChooser();
-
-
-
-    @FXML public void addNewEntry(ActionEvent actionEvent) throws IOException, InterruptedException {
+    @FXML public void addNewEntry(ActionEvent actionEvent) throws IOException {
         Integer id = null;
         String title = titleField.getText();
         String author = authorField.getText();
@@ -52,8 +48,7 @@ public class AddBookController {
         ratingField.setText("");
 
     }
-
-    public byte[] chooseCoverPhoto() throws IOException {
+    public byte[] chooseCoverPhoto() {
         try {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Select Cover Photo");
@@ -63,26 +58,22 @@ public class AddBookController {
             if (selectedFile == null) {
                 return null;
             }
-
             // Check that the file is a valid image
             BufferedImage image = ImageIO.read(selectedFile);
             if (image == null) {
                 System.out.println("Invalid image file");
                 return null;
             }
-
             // Convert the image to a byte array
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", baos);
             baos.flush();
             byte[] photoBytes = baos.toByteArray();
             baos.close();
-
             return photoBytes;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
-
 }

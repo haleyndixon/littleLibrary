@@ -3,8 +3,10 @@ package littleLibrary;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Node;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
@@ -20,45 +22,45 @@ public class Slideshow {
     public final List<Node> slides = new ArrayList<>();
     public Timeline timeline;
     public StackPane stackPane;
+    public HBox hBox;
+    public ScrollPane scrollPane;
 
     public Slideshow(StackPane stackPane) {
         this.stackPane = stackPane;
+        hBox = new HBox();
+        scrollPane = new ScrollPane(hBox);
+        stackPane.getChildren().add(scrollPane);
         stackPane.setPrefSize(200, 200);
     }
-
     public void addSlide(Node slide) {
         slides.add(slide);
-        stackPane.getChildren().add(slide);
+        hBox.getChildren().add(slide);
     }
-
     public void showCovers() {
         List<byte[]> covers = getCovers();
 
         for (byte[] cover : covers) {
-            Image image = new Image(new ByteArrayInputStream(cover), 200, 200, true, true);
+            Image image = new Image(new ByteArrayInputStream(cover));
             ImageView imageView = new ImageView();
             imageView.setFitHeight(200);
             imageView.setFitWidth(200);
-            imageView.setPreserveRatio(true);
-            imageView.setImage(image);
-            addSlide(imageView);
+            addSlide(new ImageView(image));
         }
-
         timeline = new Timeline(
                 new KeyFrame(Duration.seconds(5), e -> nextSlide()));
         timeline.setCycleCount(20);
         timeline.setAutoReverse(false);
         timeline.play();
     }
-
     private void nextSlide() {
+        stackPane.getChildren().clear();
+        for (Node slide : slides) {
+            slide.setVisible(false);
+        }
         int index = (int) timeline.getCurrentTime().toSeconds() / 5 % slides.size();
-        slides.get(index).setVisible(false);
-        int nextIndex = (index + 1) % slides.size();
-        slides.get(nextIndex).setVisible(true);
+        slides.get(index).setVisible(true);
 
     }
-
     public List<byte[]> getCovers() {
         List<byte[]> covers = new ArrayList<>();
         try {

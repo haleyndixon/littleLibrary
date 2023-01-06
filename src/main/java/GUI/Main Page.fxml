@@ -17,7 +17,6 @@
       <Button layoutX="219.0" layoutY="283.0" mnemonicParsing="false" onAction="#summaryBtn" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #FFFAF0;" text="View overall summary" />
       <Button fx:id="browseBtn" layoutX="219.0" layoutY="326.0" mnemonicParsing="false" onAction="#browseBtn" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #FFFAF0;" text="Browse library" />
       <Button fx:id="trackBtn" layoutX="219.0" layoutY="241.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="162.0" style="-fx-background-color: #FFFAF0;" text="Track my book" />
-      <Button layoutX="547.0" layoutY="14.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="39.0" style="-fx-background-color: #FFFAF0;" text="Quit" />
       <TitledPane animated="false" layoutX="219.0" layoutY="-35.0" text="untitled" />
    </children>
 </AnchorPane>

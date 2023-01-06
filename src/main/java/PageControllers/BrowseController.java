@@ -34,9 +34,6 @@ public class BrowseController {
     public TableColumn<Book, String> pageCountColumn;
     @FXML
     public TableColumn<Book, String> ratingColumn;
-
-
-
     public void loadData() throws SQLException {
 
         refreshTable();
@@ -48,7 +45,6 @@ public class BrowseController {
         pageCountColumn.setCellValueFactory(new PropertyValueFactory<>("Pages"));
         ratingColumn.setCellValueFactory(new PropertyValueFactory<>("Rating"));
     }
-
     @FXML public void deleteEntry(ActionEvent actionEvent) throws SQLException {
 
         Connection connection;
@@ -63,14 +59,11 @@ public class BrowseController {
         for (Book id : selectedItems) {
             statement.executeUpdate("DELETE FROM Entries WHERE id = " + id.getId());
         }
-
-
     }
     public void refreshTable() throws SQLException {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
         Connection conn = DatabaseTings.getConnection();
-
 
         preparedStatement = conn.prepareStatement("select * from Entries");
         resultSet = preparedStatement.executeQuery();
