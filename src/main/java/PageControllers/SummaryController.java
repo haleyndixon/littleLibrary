@@ -15,8 +15,8 @@ import java.sql.Statement;
 public class SummaryController {
     @FXML
     Label summaryLabel = new Label();
-   
-    @FXML StackPane slideShowContainer = new StackPane();
+    @FXML
+    StackPane slideShowContainer = new StackPane();
     public   Slideshow slideshow;
     public void initialize () throws SQLException {
         getBookSummary();
@@ -27,12 +27,10 @@ public class SummaryController {
         Connection connection = DatabaseTings.getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT COUNT(*)FROM Entries");
-
         int numEntries = 0;
         if (resultSet.next()) {
             numEntries = resultSet.getInt(1);
         }
-
         summaryLabel.setText("You have read " + numEntries + " books this year");
     }
 }

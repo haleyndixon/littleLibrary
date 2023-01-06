@@ -12,10 +12,7 @@ public class Book {
     private final Integer pages;
     private final Integer rating;
 
-
-
     //constructor with book object parameters
-
     public Book(Integer id, String title, String author, String finish, Integer pages, Integer rating) {
         this.id = id;
         this.title = title;
@@ -25,36 +22,24 @@ public class Book {
         this.rating = rating;
 
     }
-
-
-
     public Integer getId() {
         return id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public String getAuthor() {
         return author;
     }
-
     public String getFinish() {
         return finish;
     }
-
     public Integer getPages() {
         return pages;
     }
-
     public Integer getRating() {
         return rating;
     }
-
-
-
-
     //methods used by books
     public void insertBook(byte[] cover) {
 
@@ -63,7 +48,6 @@ public class Book {
 
         //insert book into database
         try {
-
             //establish connection
             connection = DatabaseTings.getConnection();
 
@@ -83,10 +67,8 @@ public class Book {
                 preparedStatement.executeUpdate();
                 preparedStatement.close();
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-
 }

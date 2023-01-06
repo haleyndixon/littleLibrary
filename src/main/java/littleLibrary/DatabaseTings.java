@@ -16,7 +16,6 @@ public class DatabaseTings {
         }
         return connection;
     }
-
     public static void CheckConnection() {
         Connection conn = DatabaseTings.getConnection();
         if (conn == null) {

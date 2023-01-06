@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
@@ -18,6 +20,18 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <StackPane fx:id="slideShowContainer" layoutX="208.0" layoutY="209.0" prefHeight="150.0" prefWidth="200.0" />
+      <StackPane fx:id="slideShowContainer" layoutX="200.0" layoutY="194.0" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <HBox prefHeight="168.0" prefWidth="221.0">
+               <children>
+                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                    </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

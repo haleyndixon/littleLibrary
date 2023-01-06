@@ -18,7 +18,6 @@ import java.net.URL;
     @FXML Button trackBtn;
     @FXML Button summaryBtn;
     @FXML Button browseBtn;
-
     @FXML public void addBtn (ActionEvent event) throws Exception {
         System.out.println("Working here");
 
@@ -34,11 +33,9 @@ import java.net.URL;
             exception.printStackTrace();
         }
     }
-
     @FXML public void trackBtn(ActionEvent event) throws Exception {
 
     }
-
     @FXML public void summaryBtn (ActionEvent event) throws Exception {
         try {
             FXMLLoader loader2 = new FXMLLoader();
@@ -51,7 +48,6 @@ import java.net.URL;
             exception.printStackTrace();
         }
     }
-
     @FXML public void browseBtn (ActionEvent event) {
         System.out.println("Works");
 
@@ -67,13 +63,8 @@ import java.net.URL;
             exception.printStackTrace();
         }
     }
-
     @FXML public void backBtn (ActionEvent event) {
 
-    }
-
-
-
-
+        }
     }
 
