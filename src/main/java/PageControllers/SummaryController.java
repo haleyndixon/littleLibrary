@@ -11,13 +11,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+@SuppressWarnings("ALL")
 public class SummaryController {
     @FXML
     Label summaryLabel = new Label();
-    Slideshow slideshow = new Slideshow();
+   
     @FXML StackPane slideShowContainer = new StackPane();
+    public   Slideshow slideshow;
     public void initialize () throws SQLException {
         getBookSummary();
+        slideshow = new Slideshow(slideShowContainer);
         slideshow.showCovers();
     }
     public void getBookSummary() throws SQLException {
