@@ -10,7 +10,7 @@ public class DatabaseTings {
         try {
 
             Class.forName("org.sqlite.JDBC");
-            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/haley/IdeaProjects/littleLibrary/littleLibrary.db");
+            connection = DriverManager.getConnection("database here");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
