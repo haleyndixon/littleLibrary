@@ -30,7 +30,7 @@ public class Slideshow {
         hBox = new HBox();
         scrollPane = new ScrollPane(hBox);
         stackPane.getChildren().add(scrollPane);
-        stackPane.setPrefSize(200, 200);
+        stackPane.setPrefSize(300, 156);
     }
     public void addSlide(Node slide) {
         slides.add(slide);
@@ -42,12 +42,13 @@ public class Slideshow {
         for (byte[] cover : covers) {
             Image image = new Image(new ByteArrayInputStream(cover));
             ImageView imageView = new ImageView();
-            imageView.setFitHeight(200);
-            imageView.setFitWidth(200);
-            addSlide(new ImageView(image));
+            imageView.setImage(image);
+            imageView.setFitWidth(100);
+            imageView.setFitHeight(156);
+            addSlide(imageView);
         }
         timeline = new Timeline(
-                new KeyFrame(Duration.seconds(5), e -> nextSlide()));
+                new KeyFrame(Duration.seconds(90), e -> nextSlide()));
         timeline.setCycleCount(20);
         timeline.setAutoReverse(false);
         timeline.play();
@@ -77,6 +78,7 @@ public class Slideshow {
             throw new RuntimeException(e);
         }
         return covers;
+
     }
 }
 

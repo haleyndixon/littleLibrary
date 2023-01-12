@@ -18,7 +18,7 @@ public class mainLibraryPage  extends Application {
     public void start(Stage primaryStage) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\Main Page.fxml"));
+        loader.setLocation(new URL("file:\\C:\\Users\\haley\\IdeaProjects\\littleLibrary\\src\\main\\java\\GUI\\MainPage.fxml"));
         AnchorPane mainPane = loader.load();
 
         Scene mainScene = new Scene(mainPane);
