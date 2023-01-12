@@ -20,13 +20,13 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-      <StackPane fx:id="slideShowContainer" layoutX="200.0" layoutY="194.0" prefHeight="150.0" prefWidth="200.0">
+      <StackPane fx:id="slideShowContainer" layoutX="108.0" layoutY="200.0" prefHeight="150.0" prefWidth="400.0">
          <children>
-            <HBox prefHeight="168.0" prefWidth="221.0">
+            <HBox prefHeight="168.0" prefWidth="400.0">
                <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                  <ScrollPane prefHeight="200.0" prefWidth="400.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="156.0" prefWidth="414.0" />
                     </content>
                   </ScrollPane>
                </children>
